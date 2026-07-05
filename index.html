@@ -1,0 +1,2975 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ELYVELING ✨</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap');
+
+:root {
+  --bg-primary: #0a0a0f;
+  --bg-secondary: #12121a;
+  --bg-card: #1a1a2e;
+  --bg-card-hover: #222240;
+  --accent-purple: #a855f7;
+  --accent-pink: #ec4899;
+  --accent-blue: #3b82f6;
+  --accent-cyan: #06b6d4;
+  --accent-green: #10b981;
+  --accent-yellow: #f59e0b;
+  --accent-red: #ef4444;
+  --accent-orange: #f97316;
+  --text-primary: #f1f5f9;
+  --text-secondary: #94a3b8;
+  --text-muted: #64748b;
+  --border: #2a2a4a;
+  --gradient-1: linear-gradient(135deg, #a855f7, #ec4899);
+  --gradient-2: linear-gradient(135deg, #3b82f6, #06b6d4);
+  --gradient-3: linear-gradient(135deg, #10b981, #06b6d4);
+  --gradient-4: linear-gradient(135deg, #f59e0b, #f97316);
+  --gradient-5: linear-gradient(135deg, #ec4899, #f97316);
+  --shadow-glow: 0 0 40px rgba(168, 85, 247, 0.15);
+  --shadow-card: 0 4px 24px rgba(0,0,0,0.4);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    radial-gradient(ellipse at 20% 20%, rgba(168, 85, 247, 0.08) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 80%, rgba(236, 72, 153, 0.06) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 50%, rgba(59, 130, 246, 0.04) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg-primary); }
+::-webkit-scrollbar-thumb { background: var(--accent-purple); border-radius: 3px; }
+
+/* ===== HEADER / NAV ===== */
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background: rgba(10, 10, 15, 0.85);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+  padding: 0 2rem;
+}
+
+.header-inner {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 70px;
+}
+
+.logo {
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.8rem;
+  font-weight: 900;
+  background: var(--gradient-1);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: 3px;
+  cursor: pointer;
+  text-transform: uppercase;
+}
+
+.logo span {
+  font-size: 0.7rem;
+  display: block;
+  letter-spacing: 5px;
+  background: var(--gradient-2);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 400;
+  margin-top: -4px;
+}
+
+.nav-links {
+  display: flex;
+  gap: 0.3rem;
+  list-style: none;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.nav-links li a {
+  text-decoration: none;
+  color: var(--text-secondary);
+  font-size: 0.78rem;
+  font-weight: 500;
+  padding: 0.5rem 0.9rem;
+  border-radius: 12px;
+  transition: all 0.3s;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  white-space: nowrap;
+}
+
+.nav-links li a:hover,
+.nav-links li a.active {
+  color: var(--text-primary);
+  background: rgba(168, 85, 247, 0.15);
+}
+
+.nav-links li a .nav-icon {
+  font-size: 1rem;
+}
+
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  padding: 5px;
+}
+
+.hamburger span {
+  width: 25px;
+  height: 2px;
+  background: var(--text-primary);
+  border-radius: 2px;
+  transition: 0.3s;
+}
+
+.streak-badge {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(245, 158, 11, 0.15);
+  border: 1px solid rgba(245, 158, 11, 0.3);
+  padding: 0.4rem 1rem;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  color: var(--accent-yellow);
+  font-weight: 600;
+}
+
+.streak-badge .fire { font-size: 1.2rem; }
+
+/* ===== MAIN CONTENT ===== */
+.main-content {
+  margin-top: 70px;
+  padding: 2rem;
+  max-width: 1400px;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  z-index: 1;
+}
+
+.section {
+  display: none;
+  animation: fadeIn 0.5s ease;
+}
+
+.section.active {
+  display: block;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes confetti {
+  0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+  100% { transform: translateY(-200px) rotate(720deg); opacity: 0; }
+}
+
+.section-header {
+  margin-bottom: 2rem;
+}
+
+.section-title {
+  font-family: 'Outfit', sans-serif;
+  font-size: 2.2rem;
+  font-weight: 800;
+  margin-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.section-title .emoji {
+  font-size: 2.5rem;
+  animation: float 3s ease-in-out infinite;
+}
+
+.section-subtitle {
+  color: var(--text-secondary);
+  font-size: 1rem;
+  font-weight: 400;
+}
+
+/* ===== CARDS ===== */
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 1.8rem;
+  margin-bottom: 1.5rem;
+  transition: all 0.3s;
+  box-shadow: var(--shadow-card);
+}
+
+.card:hover {
+  border-color: rgba(168, 85, 247, 0.3);
+  box-shadow: var(--shadow-glow);
+  transform: translateY(-2px);
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.2rem;
+}
+
+.card-title {
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.3rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.grid-2 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 1.5rem;
+}
+
+.grid-3 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.grid-4 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+/* ===== STAT CARDS ===== */
+.stat-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 1.5rem;
+  text-align: center;
+  transition: all 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+
+.stat-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+}
+
+.stat-card.income::before { background: var(--gradient-3); }
+.stat-card.expense::before { background: var(--gradient-5); }
+.stat-card.bills::before { background: var(--gradient-4); }
+.stat-card.balance::before { background: var(--gradient-1); }
+
+.stat-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-glow);
+}
+
+.stat-icon {
+  font-size: 2.5rem;
+  margin-bottom: 0.8rem;
+}
+
+.stat-value {
+  font-family: 'Outfit', sans-serif;
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: 0.3rem;
+}
+
+.stat-label {
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 600;
+}
+
+.stat-card.income .stat-value { color: var(--accent-green); }
+.stat-card.expense .stat-value { color: var(--accent-pink); }
+.stat-card.bills .stat-value { color: var(--accent-orange); }
+.stat-card.balance .stat-value { color: var(--accent-purple); }
+
+/* ===== FORMS ===== */
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.form-label {
+  display: block;
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-bottom: 0.4rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.form-input, .form-select, .form-textarea {
+  width: 100%;
+  padding: 0.8rem 1.2rem;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  color: var(--text-primary);
+  font-size: 0.95rem;
+  font-family: 'Inter', sans-serif;
+  transition: all 0.3s;
+  outline: none;
+}
+
+.form-input:focus, .form-select:focus, .form-textarea:focus {
+  border-color: var(--accent-purple);
+  box-shadow: 0 0 20px rgba(168, 85, 247, 0.15);
+}
+
+.form-textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+.form-row {
+  display: flex;
+  gap: 1rem;
+}
+
+.form-row .form-group {
+  flex: 1;
+}
+
+/* ===== BUTTONS ===== */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.7rem 1.5rem;
+  border: none;
+  border-radius: 12px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  font-family: 'Inter', sans-serif;
+  cursor: pointer;
+  transition: all 0.3s;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+}
+
+.btn-primary {
+  background: var(--gradient-1);
+  color: white;
+  box-shadow: 0 4px 15px rgba(168, 85, 247, 0.4);
+}
+
+.btn-primary:hover {
+  box-shadow: 0 6px 25px rgba(168, 85, 247, 0.6);
+}
+
+.btn-secondary {
+  background: var(--bg-card);
+  color: var(--text-primary);
+  border: 1px solid var(--border);
+}
+
+.btn-success {
+  background: var(--gradient-3);
+  color: white;
+}
+
+.btn-danger {
+  background: rgba(239, 68, 68, 0.2);
+  color: var(--accent-red);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+.btn-sm {
+  padding: 0.4rem 0.8rem;
+  font-size: 0.8rem;
+  border-radius: 8px;
+}
+
+.btn-lg {
+  padding: 1rem 2.5rem;
+  font-size: 1.1rem;
+  border-radius: 16px;
+}
+
+.btn-icon {
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  border-radius: 10px;
+  font-size: 1rem;
+}
+
+/* ===== LISTS ===== */
+.task-list {
+  list-style: none;
+}
+
+.task-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  margin-bottom: 0.8rem;
+  transition: all 0.3s;
+}
+
+.task-item:hover {
+  border-color: rgba(168, 85, 247, 0.3);
+  background: var(--bg-card-hover);
+}
+
+.task-item.completed {
+  opacity: 0.5;
+}
+
+.task-item.completed .task-text {
+  text-decoration: line-through;
+  color: var(--text-muted);
+}
+
+.task-checkbox {
+  width: 22px;
+  height: 22px;
+  border: 2px solid var(--border);
+  border-radius: 6px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s;
+  flex-shrink: 0;
+  background: transparent;
+  color: transparent;
+  font-size: 0.8rem;
+}
+
+.task-checkbox:hover {
+  border-color: var(--accent-purple);
+}
+
+.task-checkbox.checked {
+  background: var(--gradient-1);
+  border-color: var(--accent-purple);
+  color: white;
+}
+
+.task-text {
+  flex: 1;
+  font-size: 0.95rem;
+}
+
+.task-meta {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.task-tag {
+  padding: 0.2rem 0.6rem;
+  border-radius: 6px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.tag-high { background: rgba(239, 68, 68, 0.2); color: var(--accent-red); }
+.tag-medium { background: rgba(245, 158, 11, 0.2); color: var(--accent-yellow); }
+.tag-low { background: rgba(16, 185, 129, 0.2); color: var(--accent-green); }
+
+.transaction-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  margin-bottom: 0.8rem;
+  transition: all 0.3s;
+}
+
+.transaction-item:hover {
+  border-color: rgba(168, 85, 247, 0.2);
+}
+
+.transaction-info {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex: 1;
+}
+
+.transaction-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+}
+
+.transaction-icon.inc { background: rgba(16, 185, 129, 0.15); }
+.transaction-icon.exp { background: rgba(236, 72, 153, 0.15); }
+.transaction-icon.bill { background: rgba(249, 115, 22, 0.15); }
+
+.transaction-details h4 {
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin-bottom: 0.2rem;
+}
+
+.transaction-details span {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.transaction-amount {
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+.amount-positive { color: var(--accent-green); }
+.amount-negative { color: var(--accent-pink); }
+
+/* ===== MOTIVATION SECTION ===== */
+.motivation-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  overflow: hidden;
+  text-align: center;
+  min-height: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 3rem 2rem;
+  position: relative;
+}
+
+.motivation-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(168, 85, 247, 0.1), rgba(236, 72, 153, 0.1));
+  z-index: 0;
+}
+
+.motivation-card > * {
+  position: relative;
+  z-index: 1;
+}
+
+.motivation-emoji {
+  font-size: 5rem;
+  margin-bottom: 1.5rem;
+  animation: float 3s ease-in-out infinite;
+}
+
+.motivation-quote {
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.8rem;
+  font-weight: 700;
+  line-height: 1.4;
+  margin-bottom: 1rem;
+  max-width: 600px;
+  background: var(--gradient-1);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.motivation-author {
+  color: var(--text-secondary);
+  font-size: 1rem;
+  font-style: italic;
+  margin-bottom: 2rem;
+}
+
+.motivation-category-btns {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+.cat-btn {
+  padding: 0.5rem 1.2rem;
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  background: var(--bg-secondary);
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.3s;
+  font-family: 'Inter', sans-serif;
+}
+
+.cat-btn:hover, .cat-btn.active {
+  background: var(--gradient-1);
+  color: white;
+  border-color: transparent;
+}
+
+/* ===== WORKOUT ===== */
+.workout-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 1.5rem;
+  transition: all 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+
+.workout-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--gradient-2);
+}
+
+.workout-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-glow);
+}
+
+.workout-day {
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--accent-cyan);
+  margin-bottom: 0.8rem;
+}
+
+.workout-name {
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.exercise-list {
+  list-style: none;
+}
+
+.exercise-item {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  padding: 0.6rem 0;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  font-size: 0.9rem;
+}
+
+.exercise-item:last-child { border: none; }
+
+.exercise-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent-cyan);
+  flex-shrink: 0;
+}
+
+/* ===== SIDE QUEST ===== */
+.quest-card {
+  background: var(--bg-card);
+  border: 2px solid var(--border);
+  border-radius: 24px;
+  padding: 3rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  min-height: 350px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.quest-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.08), rgba(6, 182, 212, 0.08));
+}
+
+.quest-card > * { position: relative; z-index: 1; }
+
+.quest-emoji {
+  font-size: 4rem;
+  margin-bottom: 1.5rem;
+  animation: float 2.5s ease-in-out infinite;
+}
+
+.quest-title {
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 0.8rem;
+}
+
+.quest-description {
+  color: var(--text-secondary);
+  font-size: 1rem;
+  max-width: 500px;
+  margin-bottom: 2rem;
+  line-height: 1.6;
+}
+
+/* ===== REWARD / STREAK ===== */
+.streak-section {
+  text-align: center;
+}
+
+.streak-display {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin: 2rem 0;
+  flex-wrap: wrap;
+}
+
+.streak-day {
+  width: 60px;
+  height: 60px;
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  font-weight: 600;
+  border: 2px solid var(--border);
+  background: var(--bg-card);
+  transition: all 0.3s;
+}
+
+.streak-day.completed {
+  background: var(--gradient-1);
+  border-color: var(--accent-purple);
+  color: white;
+  box-shadow: 0 0 20px rgba(168, 85, 247, 0.4);
+}
+
+.streak-day .day-num {
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.2rem;
+  font-weight: 800;
+}
+
+.reward-card {
+  background: var(--bg-card);
+  border: 2px solid var(--accent-yellow);
+  border-radius: 24px;
+  padding: 3rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  max-width: 500px;
+  margin: 2rem auto;
+  box-shadow: 0 0 40px rgba(245, 158, 11, 0.15);
+}
+
+.reward-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(245, 158, 11, 0.08), rgba(249, 115, 22, 0.08));
+}
+
+.reward-card > * { position: relative; z-index: 1; }
+
+.reward-emoji {
+  font-size: 4rem;
+  margin-bottom: 1rem;
+}
+
+.reward-title {
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--accent-yellow);
+  margin-bottom: 0.5rem;
+}
+
+/* ===== CHESS ===== */
+.chess-board-mini {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  gap: 0;
+  width: 200px;
+  height: 200px;
+  border-radius: 8px;
+  overflow: hidden;
+  margin: 1rem auto;
+}
+
+.chess-square {
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+}
+
+.chess-square.light { background: #e8dcc8; }
+.chess-square.dark { background: #7b6b5a; }
+
+/* ===== SYNC SECTION ===== */
+.sync-section {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  background: var(--bg-card);
+  border: 1px dashed var(--border);
+  border-radius: 16px;
+}
+
+.sync-title {
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.sync-desc {
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  margin-bottom: 1rem;
+  line-height: 1.5;
+}
+
+.sync-buttons {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+/* ===== PROGRESS BAR ===== */
+.progress-bar {
+  width: 100%;
+  height: 8px;
+  background: var(--bg-secondary);
+  border-radius: 4px;
+  overflow: hidden;
+  margin: 0.5rem 0;
+}
+
+.progress-fill {
+  height: 100%;
+  border-radius: 4px;
+  transition: width 0.5s ease;
+}
+
+.progress-fill.purple { background: var(--gradient-1); }
+.progress-fill.green { background: var(--gradient-3); }
+.progress-fill.blue { background: var(--gradient-2); }
+.progress-fill.orange { background: var(--gradient-4); }
+
+/* ===== CONFETTI ===== */
+.confetti-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+.confetti-piece {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  animation: confetti 1.5s ease forwards;
+}
+
+/* ===== TABS ===== */
+.tab-bar {
+  display: flex;
+  gap: 0.3rem;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.tab-btn {
+  padding: 0.6rem 1.2rem;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+  font-family: 'Inter', sans-serif;
+}
+
+.tab-btn:hover, .tab-btn.active {
+  background: var(--gradient-1);
+  color: white;
+  border-color: transparent;
+}
+
+.tab-content {
+  display: none;
+}
+
+.tab-content.active {
+  display: block;
+  animation: fadeIn 0.4s ease;
+}
+
+/* ===== EMPTY STATE ===== */
+.empty-state {
+  text-align: center;
+  padding: 3rem;
+  color: var(--text-muted);
+}
+
+.empty-state .empty-emoji {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.empty-state p {
+  font-size: 0.95rem;
+}
+
+/* ===== MODAL ===== */
+.modal-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.7);
+  backdrop-filter: blur(10px);
+  z-index: 2000;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.modal-overlay.show {
+  display: flex;
+}
+
+.modal {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  padding: 2rem;
+  max-width: 500px;
+  width: 100%;
+  max-height: 80vh;
+  overflow-y: auto;
+  animation: slideUp 0.4s ease;
+}
+
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+}
+
+.modal-title {
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.4rem;
+  font-weight: 700;
+}
+
+.modal-close {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  transition: 0.3s;
+}
+
+.modal-close:hover {
+  background: var(--accent-red);
+  border-color: var(--accent-red);
+}
+
+/* ===== DASHBOARD WELCOME ===== */
+.welcome-banner {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  padding: 2.5rem;
+  margin-bottom: 2rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.welcome-banner::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(168, 85, 247, 0.08), rgba(236, 72, 153, 0.05), rgba(59, 130, 246, 0.05));
+}
+
+.welcome-banner > * { position: relative; z-index: 1; }
+
+.welcome-greeting {
+  font-family: 'Outfit', sans-serif;
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: 0.5rem;
+}
+
+.welcome-date {
+  color: var(--text-secondary);
+  font-size: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.welcome-stats {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.welcome-stat {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.welcome-stat-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.welcome-stat span {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+.welcome-stat strong {
+  color: var(--text-primary);
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .header { padding: 0 1rem; }
+  
+  .nav-links {
+    display: none;
+    position: absolute;
+    top: 70px;
+    left: 0;
+    right: 0;
+    background: rgba(10, 10, 15, 0.98);
+    backdrop-filter: blur(20px);
+    flex-direction: column;
+    padding: 1rem;
+    border-bottom: 1px solid var(--border);
+  }
+  
+  .nav-links.show { display: flex; }
+  .hamburger { display: flex; }
+  
+  .main-content { padding: 1rem; }
+  .section-title { font-size: 1.6rem; }
+  .motivation-quote { font-size: 1.3rem; }
+  .form-row { flex-direction: column; }
+  .grid-2, .grid-3 { grid-template-columns: 1fr; }
+  .welcome-greeting { font-size: 1.5rem; }
+  
+  .streak-day {
+    width: 45px;
+    height: 45px;
+  }
+  
+  .streak-day .day-num { font-size: 1rem; }
+}
+
+/* ===== HIDDEN FILE INPUT ===== */
+.hidden-input { display: none; }
+
+/* ===== TODAY MARKER ===== */
+.today-marker {
+  display: inline-block;
+  padding: 0.15rem 0.5rem;
+  background: var(--gradient-1);
+  border-radius: 6px;
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: white;
+  margin-left: 0.5rem;
+}
+
+/* ===== TOOLTIP ===== */
+.tooltip {
+  position: relative;
+}
+
+.tooltip::after {
+  content: attr(data-tip);
+  position: absolute;
+  bottom: 120%;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 0.4rem 0.8rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-size: 0.75rem;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: 0.3s;
+}
+
+.tooltip:hover::after {
+  opacity: 1;
+}
+
+/* No items message */
+.no-items {
+  text-align: center;
+  padding: 2rem;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+.checkin-btn {
+  padding: 1rem 3rem;
+  font-size: 1.2rem;
+  border-radius: 20px;
+  background: var(--gradient-1);
+  border: none;
+  color: white;
+  cursor: pointer;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  transition: all 0.3s;
+  box-shadow: 0 4px 20px rgba(168, 85, 247, 0.4);
+}
+
+.checkin-btn:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 8px 30px rgba(168, 85, 247, 0.6);
+}
+
+.checkin-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.delete-btn-inline {
+  background: none;
+  border: none;
+  color: var(--accent-red);
+  cursor: pointer;
+  font-size: 1rem;
+  padding: 0.3rem;
+  border-radius: 6px;
+  transition: 0.3s;
+  opacity: 0.5;
+}
+
+.delete-btn-inline:hover {
+  opacity: 1;
+  background: rgba(239, 68, 68, 0.15);
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header">
+  <div class="header-inner">
+    <div class="logo" onclick="showSection('dashboard')">
+      ELYVELING
+      <span>level up your life</span>
+    </div>
+    
+    <nav>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#" onclick="showSection('dashboard')" class="active" id="nav-dashboard"><span class="nav-icon">🏠</span> Home</a></li>
+        <li><a href="#" onclick="showSection('finance')" id="nav-finance"><span class="nav-icon">💰</span> Finance</a></li>
+        <li><a href="#" onclick="showSection('daily')" id="nav-daily"><span class="nav-icon">📋</span> Daily</a></li>
+        <li><a href="#" onclick="showSection('uni')" id="nav-uni"><span class="nav-icon">🎓</span> Uni</a></li>
+        <li><a href="#" onclick="showSection('workout')" id="nav-workout"><span class="nav-icon">💪</span> Workout</a></li>
+        <li><a href="#" onclick="showSection('chess')" id="nav-chess"><span class="nav-icon">♟️</span> Chess</a></li>
+        <li><a href="#" onclick="showSection('motivation')" id="nav-motivation"><span class="nav-icon">✨</span> Motivation</a></li>
+        <li><a href="#" onclick="showSection('sidequest')" id="nav-sidequest"><span class="nav-icon">🎲</span> Side Quest</a></li>
+        <li><a href="#" onclick="showSection('streak')" id="nav-streak"><span class="nav-icon">🏆</span> Streak</a></li>
+      </ul>
+    </nav>
+
+    <div style="display:flex;align-items:center;gap:1rem;">
+      <div class="streak-badge" id="headerStreak">
+        <span class="fire">🔥</span>
+        <span id="headerStreakCount">0</span> day streak
+      </div>
+      <div class="hamburger" onclick="toggleNav()">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- MAIN CONTENT -->
+<main class="main-content">
+
+  <!-- ============ DASHBOARD ============ -->
+  <div class="section active" id="section-dashboard">
+    <div class="welcome-banner">
+      <div class="welcome-greeting" id="welcomeGreeting">Good Morning ☀️</div>
+      <div class="welcome-date" id="welcomeDate"></div>
+      <div class="welcome-stats">
+        <div class="welcome-stat">
+          <div class="welcome-stat-dot" style="background:var(--accent-green)"></div>
+          <span>Tasks Done Today: <strong id="dashTasksDone">0</strong></span>
+        </div>
+        <div class="welcome-stat">
+          <div class="welcome-stat-dot" style="background:var(--accent-purple)"></div>
+          <span>Streak: <strong id="dashStreak">0</strong> days</span>
+        </div>
+        <div class="welcome-stat">
+          <div class="welcome-stat-dot" style="background:var(--accent-yellow)"></div>
+          <span>Balance: <strong id="dashBalance">$0</strong></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid-3">
+      <div class="card" style="cursor:pointer" onclick="showSection('finance')">
+        <div class="card-title">💰 Finance Overview</div>
+        <div style="margin-top:1rem;">
+          <div style="display:flex;justify-content:space-between;margin-bottom:0.5rem;">
+            <span style="color:var(--text-secondary)">Income</span>
+            <span style="color:var(--accent-green);font-weight:700" id="dashIncome">$0</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;margin-bottom:0.5rem;">
+            <span style="color:var(--text-secondary)">Expenses</span>
+            <span style="color:var(--accent-pink);font-weight:700" id="dashExpense">$0</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;">
+            <span style="color:var(--text-secondary)">Bills</span>
+            <span style="color:var(--accent-orange);font-weight:700" id="dashBills">$0</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" style="cursor:pointer" onclick="showSection('daily')">
+        <div class="card-title">📋 Today's Tasks</div>
+        <div id="dashDailyPreview" style="margin-top:1rem;">
+          <div class="no-items">No tasks yet. Click to add!</div>
+        </div>
+      </div>
+
+      <div class="card" style="cursor:pointer" onclick="showSection('motivation')">
+        <div class="card-title">✨ Daily Motivation</div>
+        <div style="margin-top:1rem;text-align:center;">
+          <div style="font-size:2rem;margin-bottom:0.5rem;" id="dashMotivEmoji">💫</div>
+          <p style="color:var(--text-secondary);font-style:italic;font-size:0.9rem;" id="dashMotivQuote">"Click for inspiration"</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- SYNC SECTION -->
+    <div class="sync-section">
+      <div class="sync-title">🔄 Cross-Device Sync</div>
+      <div class="sync-desc">
+        To keep your data across devices, export your data on one device and import it on another. 
+        Your data is saved locally on each device automatically.
+      </div>
+      <div class="sync-buttons">
+        <button class="btn btn-primary" onclick="exportData()">📤 Export Data</button>
+        <button class="btn btn-secondary" onclick="document.getElementById('importFile').click()">📥 Import Data</button>
+        <input type="file" id="importFile" class="hidden-input" accept=".json" onchange="importData(event)">
+        <button class="btn btn-danger" onclick="clearAllData()">🗑️ Clear All Data</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ FINANCE ============ -->
+  <div class="section" id="section-finance">
+    <div class="section-header">
+      <div class="section-title"><span class="emoji">💰</span> Finance Tracker</div>
+      <div class="section-subtitle">Track your income, expenses, and bills in one place</div>
+    </div>
+
+    <div class="grid-4" style="margin-bottom:2rem;">
+      <div class="stat-card income">
+        <div class="stat-icon">💵</div>
+        <div class="stat-value" id="totalIncome">$0</div>
+        <div class="stat-label">Total Income</div>
+      </div>
+      <div class="stat-card expense">
+        <div class="stat-icon">🛒</div>
+        <div class="stat-value" id="totalExpense">$0</div>
+        <div class="stat-label">Total Expenses</div>
+      </div>
+      <div class="stat-card bills">
+        <div class="stat-icon">📄</div>
+        <div class="stat-value" id="totalBills">$0</div>
+        <div class="stat-label">Total Bills</div>
+      </div>
+      <div class="stat-card balance">
+        <div class="stat-icon">💎</div>
+        <div class="stat-value" id="totalBalance">$0</div>
+        <div class="stat-label">Balance</div>
+      </div>
+    </div>
+
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">➕ Add Transaction</div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Type</label>
+          <select class="form-select" id="finType">
+            <option value="income">💵 Income</option>
+            <option value="expense">🛒 Expense</option>
+            <option value="bill">📄 Bill</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Description</label>
+          <input type="text" class="form-input" id="finDesc" placeholder="e.g., Salary, Groceries, Electricity...">
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Amount ($)</label>
+            <input type="number" class="form-input" id="finAmount" placeholder="0.00" step="0.01">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Date</label>
+            <input type="date" class="form-input" id="finDate">
+          </div>
+        </div>
+        <button class="btn btn-primary" onclick="addTransaction()" style="width:100%;margin-top:0.5rem;">
+          💫 Add Transaction
+        </button>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">📊 Recent Transactions</div>
+        </div>
+        <div id="transactionList">
+          <div class="no-items">No transactions yet ✨</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ DAILY TASKS ============ -->
+  <div class="section" id="section-daily">
+    <div class="section-header">
+      <div class="section-title"><span class="emoji">📋</span> Daily Tasks</div>
+      <div class="section-subtitle">Organize your day and crush your goals</div>
+    </div>
+
+    <div class="card" style="margin-bottom:1.5rem;">
+      <div class="form-row">
+        <div class="form-group" style="flex:3;">
+          <input type="text" class="form-input" id="dailyTaskInput" placeholder="✍️ What do you need to do today?" onkeypress="if(event.key==='Enter')addDailyTask()">
+        </div>
+        <div class="form-group" style="flex:1;">
+          <select class="form-select" id="dailyPriority">
+            <option value="low">🟢 Low</option>
+            <option value="medium" selected>🟡 Medium</option>
+            <option value="high">🔴 High</option>
+          </select>
+        </div>
+        <div class="form-group" style="flex:0;">
+          <button class="btn btn-primary" onclick="addDailyTask()" style="height:100%;white-space:nowrap;">+ Add</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title">📝 Today's Tasks</div>
+        <span style="color:var(--text-muted);font-size:0.85rem;" id="dailyProgress">0/0 done</span>
+      </div>
+      <div class="progress-bar">
+        <div class="progress-fill purple" id="dailyProgressBar" style="width:0%"></div>
+      </div>
+      <ul class="task-list" id="dailyTaskList" style="margin-top:1rem;">
+        <div class="no-items">No tasks yet. Start adding! 🚀</div>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ============ UNI TASKS ============ -->
+  <div class="section" id="section-uni">
+    <div class="section-header">
+      <div class="section-title"><span class="emoji">🎓</span> Uni Tasks</div>
+      <div class="section-subtitle">Stay on top of your academic game</div>
+    </div>
+
+    <div class="card" style="margin-bottom:1.5rem;">
+      <div class="form-group">
+        <input type="text" class="form-input" id="uniTaskInput" placeholder="📚 Assignment, project, reading..." onkeypress="if(event.key==='Enter')addUniTask()">
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Subject</label>
+          <input type="text" class="form-input" id="uniSubject" placeholder="e.g., Math, CS, English">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Due Date</label>
+          <input type="date" class="form-input" id="uniDueDate">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Priority</label>
+          <select class="form-select" id="uniPriority">
+            <option value="low">🟢 Low</option>
+            <option value="medium" selected>🟡 Medium</option>
+            <option value="high">🔴 Urgent</option>
+          </select>
+        </div>
+      </div>
+      <button class="btn btn-primary" onclick="addUniTask()" style="width:100%;">🎯 Add Uni Task</button>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title">📚 Academic Tasks</div>
+        <span style="color:var(--text-muted);font-size:0.85rem;" id="uniProgress">0/0 done</span>
+      </div>
+      <div class="progress-bar">
+        <div class="progress-fill blue" id="uniProgressBar" style="width:0%"></div>
+      </div>
+      <ul class="task-list" id="uniTaskList" style="margin-top:1rem;">
+        <div class="no-items">No uni tasks yet. Add your assignments! 📖</div>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ============ WORKOUT ============ -->
+  <div class="section" id="section-workout">
+    <div class="section-header">
+      <div class="section-title"><span class="emoji">💪</span> Workout Tracker</div>
+      <div class="section-subtitle">Transform your body, transform your life</div>
+    </div>
+
+    <div class="tab-bar">
+      <button class="tab-btn active" onclick="showWorkoutTab('plan')">📅 Workout Plan</button>
+      <button class="tab-btn" onclick="showWorkoutTab('log')">📝 Log Workout</button>
+      <button class="tab-btn" onclick="showWorkoutTab('suggest')">🎲 Suggest Workout</button>
+    </div>
+
+    <div class="tab-content active" id="workout-plan">
+      <div class="card" style="margin-bottom:1.5rem;">
+        <div class="card-header">
+          <div class="card-title">➕ Add to Workout Plan</div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Day</label>
+            <select class="form-select" id="workoutDay">
+              <option>Monday</option><option>Tuesday</option><option>Wednesday</option>
+              <option>Thursday</option><option>Friday</option><option>Saturday</option><option>Sunday</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Workout Name</label>
+            <input type="text" class="form-input" id="workoutName" placeholder="e.g., Upper Body">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Exercises (one per line)</label>
+          <textarea class="form-textarea" id="workoutExercises" placeholder="Bench Press 3x12&#10;Shoulder Press 3x10&#10;Bicep Curls 3x15"></textarea>
+        </div>
+        <button class="btn btn-primary" onclick="addWorkoutPlan()" style="width:100%;">💪 Add Plan</button>
+      </div>
+      <div class="grid-3" id="workoutPlanGrid">
+        <div class="no-items" style="grid-column:1/-1;">No workout plans yet. Create your schedule! 🏋️</div>
+      </div>
+    </div>
+
+    <div class="tab-content" id="workout-log">
+      <div class="card" style="margin-bottom:1.5rem;">
+        <div class="card-header">
+          <div class="card-title">📝 Log Today's Workout</div>
+        </div>
+        <div class="form-group">
+          <input type="text" class="form-input" id="workoutLogInput" placeholder="What workout did you do?" onkeypress="if(event.key==='Enter')addWorkoutLog()">
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Duration (min)</label>
+            <input type="number" class="form-input" id="workoutDuration" placeholder="45">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Intensity</label>
+            <select class="form-select" id="workoutIntensity">
+              <option value="light">💚 Light</option>
+              <option value="moderate" selected>💛 Moderate</option>
+              <option value="intense">❤️ Intense</option>
+            </select>
+          </div>
+        </div>
+        <button class="btn btn-success" onclick="addWorkoutLog()" style="width:100%;">✅ Log Workout</button>
+      </div>
+      <div class="card">
+        <div class="card-title">📊 Workout History</div>
+        <div id="workoutLogList" style="margin-top:1rem;">
+          <div class="no-items">No workouts logged yet. Let's go! 🔥</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tab-content" id="workout-suggest">
+      <div class="quest-card">
+        <div class="quest-emoji" id="workoutSuggestEmoji">🏋️</div>
+        <div class="quest-title" id="workoutSuggestTitle">Get a Workout Suggestion!</div>
+        <div class="quest-description" id="workoutSuggestDesc">Click the button below and we'll suggest a workout for you based on different muscle groups and workout styles.</div>
+        <button class="btn btn-primary btn-lg" onclick="suggestWorkout()">🎲 Suggest Workout</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ CHESS ============ -->
+  <div class="section" id="section-chess">
+    <div class="section-header">
+      <div class="section-title"><span class="emoji">♟️</span> Chess Tracker</div>
+      <div class="section-subtitle">Sharpen your mind, master the board</div>
+    </div>
+
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">➕ Add Chess Task</div>
+        </div>
+        <div class="form-group">
+          <input type="text" class="form-input" id="chessTaskInput" placeholder="e.g., Solve 10 puzzles, Study openings..." onkeypress="if(event.key==='Enter')addChessTask()">
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Category</label>
+            <select class="form-select" id="chessCategory">
+              <option value="puzzle">🧩 Puzzles</option>
+              <option value="opening">📖 Openings</option>
+              <option value="endgame">🏁 Endgames</option>
+              <option value="game">🎮 Play Games</option>
+              <option value="analysis">🔍 Analysis</option>
+              <option value="tactics">⚔️ Tactics</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Priority</label>
+            <select class="form-select" id="chessPriority">
+              <option value="low">🟢 Low</option>
+              <option value="medium" selected>🟡 Medium</option>
+              <option value="high">🔴 High</option>
+            </select>
+          </div>
+        </div>
+        <button class="btn btn-primary" onclick="addChessTask()" style="width:100%;">♟️ Add Task</button>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">📊 Chess Stats</div>
+        </div>
+        <div style="text-align:center;padding:1rem 0;">
+          <div class="chess-board-mini" id="chessBoard"></div>
+          <div style="margin-top:1rem;display:flex;justify-content:center;gap:2rem;">
+            <div>
+              <div style="font-family:'Outfit';font-size:1.8rem;font-weight:800;color:var(--accent-cyan);" id="chessTotalDone">0</div>
+              <div style="color:var(--text-muted);font-size:0.8rem;">Completed</div>
+            </div>
+            <div>
+              <div style="font-family:'Outfit';font-size:1.8rem;font-weight:800;color:var(--accent-yellow);" id="chessTotalPending">0</div>
+              <div style="color:var(--text-muted);font-size:0.8rem;">Pending</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:1.5rem;">
+      <div class="card-header">
+        <div class="card-title">📝 Chess Tasks</div>
+        <span style="color:var(--text-muted);font-size:0.85rem;" id="chessProgress">0/0 done</span>
+      </div>
+      <div class="progress-bar">
+        <div class="progress-fill green" id="chessProgressBar" style="width:0%"></div>
+      </div>
+      <ul class="task-list" id="chessTaskList" style="margin-top:1rem;">
+        <div class="no-items">No chess tasks yet. Time to improve! ♟️</div>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ============ MOTIVATION ============ -->
+  <div class="section" id="section-motivation">
+    <div class="section-header">
+      <div class="section-title"><span class="emoji">✨</span> Motivation</div>
+      <div class="section-subtitle">Feed your mind with powerful words</div>
+    </div>
+
+    <div class="motivation-category-btns">
+      <button class="cat-btn active" onclick="setMotivationCategory('all', this)">🌟 All</button>
+      <button class="cat-btn" onclick="setMotivationCategory('selfcare', this)">🧘 Self Care</button>
+      <button class="cat-btn" onclick="setMotivationCategory('study', this)">📚 Study</button>
+      <button class="cat-btn" onclick="setMotivationCategory('work', this)">💼 Work</button>
+      <button class="cat-btn" onclick="setMotivationCategory('chess', this)">♟️ Chess</button>
+      <button class="cat-btn" onclick="setMotivationCategory('money', this)">💰 Money</button>
+      <button class="cat-btn" onclick="setMotivationCategory('fitness', this)">💪 Weight Loss</button>
+    </div>
+
+    <div class="motivation-card" id="motivationCard">
+      <div class="motivation-emoji" id="motivEmoji">💫</div>
+      <div class="motivation-quote" id="motivQuote">Click the button to get inspired!</div>
+      <div class="motivation-author" id="motivAuthor"></div>
+      <button class="btn btn-primary btn-lg" onclick="getMotivation()">✨ Inspire Me</button>
+    </div>
+  </div>
+
+  <!-- ============ SIDE QUEST ============ -->
+  <div class="section" id="section-sidequest">
+    <div class="section-header">
+      <div class="section-title"><span class="emoji">🎲</span> Side Quest</div>
+      <div class="section-subtitle">Bored? Let fate decide your adventure!</div>
+    </div>
+
+    <div class="quest-card">
+      <div class="quest-emoji" id="questEmoji">🎲</div>
+      <div class="quest-title" id="questTitle">Ready for an Adventure?</div>
+      <div class="quest-description" id="questDesc">Click the button below to receive a random side quest. It could be anything — fun, creative, productive, or just plain silly!</div>
+      <button class="btn btn-primary btn-lg" onclick="getRandomQuest()">🎲 Roll Side Quest</button>
+    </div>
+
+    <div class="card" style="margin-top:1.5rem;">
+      <div class="card-header">
+        <div class="card-title">📜 Quest History</div>
+        <button class="btn btn-sm btn-danger" onclick="clearQuestHistory()">Clear</button>
+      </div>
+      <div id="questHistory" style="margin-top:0.5rem;">
+        <div class="no-items">No quests rolled yet! 🎯</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ STREAK & REWARDS ============ -->
+  <div class="section" id="section-streak">
+    <div class="section-header">
+      <div class="section-title"><span class="emoji">🏆</span> Streak & Rewards</div>
+      <div class="section-subtitle">Stay consistent, earn awesome rewards!</div>
+    </div>
+
+    <div class="streak-section">
+      <div class="card">
+        <div style="text-align:center;">
+          <div style="font-size:4rem;margin-bottom:1rem;">🔥</div>
+          <div style="font-family:'Outfit';font-size:3rem;font-weight:900;background:var(--gradient-4);-webkit-background-clip:text;-webkit-text-fill-color:transparent;" id="currentStreakBig">0</div>
+          <div style="color:var(--text-secondary);font-size:1.1rem;margin-bottom:2rem;">Day Streak</div>
+          
+          <div class="streak-display" id="streakDays">
+            <!-- Generated by JS -->
+          </div>
+
+          <div style="margin-top:2rem;">
+            <button class="checkin-btn" id="checkinBtn" onclick="dailyCheckin()">
+              ✅ Daily Check-in
+            </button>
+            <p style="color:var(--text-muted);font-size:0.85rem;margin-top:1rem;" id="checkinStatus"></p>
+          </div>
+        </div>
+      </div>
+
+      <div id="rewardSection" style="display:none;">
+        <div class="reward-card">
+          <div class="reward-emoji">🎁</div>
+          <div class="reward-title" id="rewardTitle">You earned a reward!</div>
+          <p style="color:var(--text-secondary);margin-top:0.5rem;font-size:1rem;" id="rewardDesc"></p>
+        </div>
+      </div>
+
+      <div class="card" style="margin-top:1.5rem;">
+        <div class="card-title">🏅 Reward History</div>
+        <div id="rewardHistory" style="margin-top:1rem;">
+          <div class="no-items">Complete a 7-day streak to earn rewards! 🌟</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<!-- CONFETTI CONTAINER -->
+<div class="confetti-container" id="confettiContainer"></div>
+
+<script>
+// ==========================================
+// ELYVELING - Complete Application Logic
+// ==========================================
+
+// ===== DATA MANAGEMENT =====
+const DEFAULT_DATA = {
+  transactions: [],
+  dailyTasks: [],
+  uniTasks: [],
+  workoutPlans: [],
+  workoutLogs: [],
+  chessTasks: [],
+  questHistory: [],
+  streak: {
+    count: 0,
+    lastCheckin: null,
+    history: []
+  },
+  rewards: [],
+  settings: {
+    currency: '$'
+  }
+};
+
+function loadData() {
+  try {
+    const saved = localStorage.getItem('elyveling_data');
+    if (saved) {
+      const parsed = JSON.parse(saved);
+      // Merge with defaults to handle new fields
+      return { ...DEFAULT_DATA, ...parsed, streak: { ...DEFAULT_DATA.streak, ...(parsed.streak || {}) } };
+    }
+  } catch(e) {
+    console.error('Error loading data:', e);
+  }
+  return JSON.parse(JSON.stringify(DEFAULT_DATA));
+}
+
+function saveData() {
+  try {
+    localStorage.setItem('elyveling_data', JSON.stringify(appData));
+  } catch(e) {
+    console.error('Error saving data:', e);
+  }
+}
+
+let appData = loadData();
+
+// ===== NAVIGATION =====
+function showSection(sectionId) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+  
+  const section = document.getElementById('section-' + sectionId);
+  const nav = document.getElementById('nav-' + sectionId);
+  
+  if (section) section.classList.add('active');
+  if (nav) nav.classList.add('active');
+  
+  document.getElementById('navLinks').classList.remove('show');
+  
+  // Refresh the section data
+  refreshAll();
+}
+
+function toggleNav() {
+  document.getElementById('navLinks').classList.toggle('show');
+}
+
+// ===== WELCOME BANNER =====
+function updateWelcome() {
+  const hour = new Date().getHours();
+  let greeting = '';
+  if (hour < 12) greeting = 'Good Morning ☀️';
+  else if (hour < 17) greeting = 'Good Afternoon 🌤️';
+  else if (hour < 21) greeting = 'Good Evening 🌅';
+  else greeting = 'Good Night 🌙';
+  
+  document.getElementById('welcomeGreeting').textContent = greeting;
+  
+  const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+  document.getElementById('welcomeDate').textContent = new Date().toLocaleDateString('en-US', options);
+  
+  // Dashboard stats
+  const todayDone = appData.dailyTasks.filter(t => t.completed).length;
+  document.getElementById('dashTasksDone').textContent = todayDone;
+  document.getElementById('dashStreak').textContent = appData.streak.count;
+  
+  const balance = calculateBalance();
+  document.getElementById('dashBalance').textContent = '$' + balance.toFixed(2);
+  
+  // Finance preview
+  const totals = calculateTotals();
+  document.getElementById('dashIncome').textContent = '$' + totals.income.toFixed(2);
+  document.getElementById('dashExpense').textContent = '$' + totals.expense.toFixed(2);
+  document.getElementById('dashBills').textContent = '$' + totals.bills.toFixed(2);
+  
+  // Daily tasks preview
+  const preview = document.getElementById('dashDailyPreview');
+  const tasks = appData.dailyTasks.slice(0, 3);
+  if (tasks.length === 0) {
+    preview.innerHTML = '<div class="no-items">No tasks yet. Click to add!</div>';
+  } else {
+    preview.innerHTML = tasks.map(t => `
+      <div style="display:flex;align-items:center;gap:0.5rem;margin-bottom:0.5rem;">
+        <span style="color:${t.completed ? 'var(--accent-green)' : 'var(--text-muted)'}">${t.completed ? '✅' : '⬜'}</span>
+        <span style="font-size:0.9rem;${t.completed ? 'text-decoration:line-through;color:var(--text-muted)' : ''}">${t.text}</span>
+      </div>
+    `).join('');
+  }
+  
+  // Motivation preview
+  const motivs = getMotivationQuotes('all');
+  const randomMotiv = motivs[Math.floor(Math.random() * motivs.length)];
+  document.getElementById('dashMotivEmoji').textContent = randomMotiv.emoji;
+  document.getElementById('dashMotivQuote').textContent = '"' + randomMotiv.quote + '"';
+}
+
+// ===== FINANCE =====
+function calculateTotals() {
+  let income = 0, expense = 0, bills = 0;
+  appData.transactions.forEach(t => {
+    if (t.type === 'income') income += parseFloat(t.amount);
+    else if (t.type === 'expense') expense += parseFloat(t.amount);
+    else if (t.type === 'bill') bills += parseFloat(t.amount);
+  });
+  return { income, expense, bills };
+}
+
+function calculateBalance() {
+  const t = calculateTotals();
+  return t.income - t.expense - t.bills;
+}
+
+function addTransaction() {
+  const type = document.getElementById('finType').value;
+  const desc = document.getElementById('finDesc').value.trim();
+  const amount = parseFloat(document.getElementById('finAmount').value);
+  const date = document.getElementById('finDate').value || new Date().toISOString().split('T')[0];
+  
+  if (!desc || isNaN(amount) || amount <= 0) {
+    showToast('Please fill in all fields correctly! 📝');
+    return;
+  }
+  
+  appData.transactions.unshift({
+    id: Date.now(),
+    type, desc, amount, date
+  });
+  
+  saveData();
+  renderTransactions();
+  updateFinanceStats();
+  
+  document.getElementById('finDesc').value = '';
+  document.getElementById('finAmount').value = '';
+  
+  showToast('Transaction added! 💰');
+}
+
+function deleteTransaction(id) {
+  appData.transactions = appData.transactions.filter(t => t.id !== id);
+  saveData();
+  renderTransactions();
+  updateFinanceStats();
+}
+
+function renderTransactions() {
+  const list = document.getElementById('transactionList');
+  if (appData.transactions.length === 0) {
+    list.innerHTML = '<div class="no-items">No transactions yet ✨</div>';
+    return;
+  }
+  
+  list.innerHTML = appData.transactions.slice(0, 20).map(t => {
+    const icons = { income: '💵', expense: '🛒', bill: '📄' };
+    const classes = { income: 'inc', expense: 'exp', bill: 'bill' };
+    const amountClass = t.type === 'income' ? 'amount-positive' : 'amount-negative';
+    const prefix = t.type === 'income' ? '+' : '-';
+    
+    return `
+      <div class="transaction-item">
+        <div class="transaction-info">
+          <div class="transaction-icon ${classes[t.type]}">${icons[t.type]}</div>
+          <div class="transaction-details">
+            <h4>${t.desc}</h4>
+            <span>${t.date} • ${t.type.charAt(0).toUpperCase() + t.type.slice(1)}</span>
+          </div>
+        </div>
+        <div style="display:flex;align-items:center;gap:0.8rem;">
+          <div class="transaction-amount ${amountClass}">${prefix}$${parseFloat(t.amount).toFixed(2)}</div>
+          <button class="delete-btn-inline" onclick="deleteTransaction(${t.id})">✕</button>
+        </div>
+      </div>
+    `;
+  }).join('');
+}
+
+function updateFinanceStats() {
+  const totals = calculateTotals();
+  document.getElementById('totalIncome').textContent = '$' + totals.income.toFixed(2);
+  document.getElementById('totalExpense').textContent = '$' + totals.expense.toFixed(2);
+  document.getElementById('totalBills').textContent = '$' + totals.bills.toFixed(2);
+  document.getElementById('totalBalance').textContent = '$' + calculateBalance().toFixed(2);
+}
+
+// ===== DAILY TASKS =====
+function addDailyTask() {
+  const text = document.getElementById('dailyTaskInput').value.trim();
+  const priority = document.getElementById('dailyPriority').value;
+  
+  if (!text) {
+    showToast('Please enter a task! 📝');
+    return;
+  }
+  
+  appData.dailyTasks.push({
+    id: Date.now(),
+    text,
+    priority,
+    completed: false,
+    createdAt: new Date().toISOString()
+  });
+  
+  saveData();
+  renderDailyTasks();
+  document.getElementById('dailyTaskInput').value = '';
+  showToast('Task added! 📋');
+}
+
+function toggleDailyTask(id) {
+  const task = appData.dailyTasks.find(t => t.id === id);
+  if (task) {
+    task.completed = !task.completed;
+    saveData();
+    renderDailyTasks();
+    if (task.completed) showToast('Task completed! ✅');
+  }
+}
+
+function deleteDailyTask(id) {
+  appData.dailyTasks = appData.dailyTasks.filter(t => t.id !== id);
+  saveData();
+  renderDailyTasks();
+}
+
+function renderDailyTasks() {
+  const list = document.getElementById('dailyTaskList');
+  const tasks = appData.dailyTasks;
+  
+  if (tasks.length === 0) {
+    list.innerHTML = '<div class="no-items">No tasks yet. Start adding! 🚀</div>';
+    document.getElementById('dailyProgress').textContent = '0/0 done';
+    document.getElementById('dailyProgressBar').style.width = '0%';
+    return;
+  }
+  
+  const done = tasks.filter(t => t.completed).length;
+  const pct = Math.round((done / tasks.length) * 100);
+  document.getElementById('dailyProgress').textContent = `${done}/${tasks.length} done`;
+  document.getElementById('dailyProgressBar').style.width = pct + '%';
+  
+  const sorted = [...tasks].sort((a, b) => {
+    if (a.completed !== b.completed) return a.completed ? 1 : -1;
+    const pOrder = { high: 0, medium: 1, low: 2 };
+    return pOrder[a.priority] - pOrder[b.priority];
+  });
+  
+  list.innerHTML = sorted.map(t => {
+    const tagClass = { high: 'tag-high', medium: 'tag-medium', low: 'tag-low' };
+    const tagLabel = { high: '🔴 High', medium: '🟡 Med', low: '🟢 Low' };
+    
+    return `
+      <li class="task-item ${t.completed ? 'completed' : ''}">
+        <div class="task-checkbox ${t.completed ? 'checked' : ''}" onclick="toggleDailyTask(${t.id})">
+          ${t.completed ? '✓' : ''}
+        </div>
+        <div class="task-text">${t.text}</div>
+        <div class="task-meta">
+          <span class="task-tag ${tagClass[t.priority]}">${tagLabel[t.priority]}</span>
+          <button class="delete-btn-inline" onclick="deleteDailyTask(${t.id})">✕</button>
+        </div>
+      </li>
+    `;
+  }).join('');
+}
+
+// ===== UNI TASKS =====
+function addUniTask() {
+  const text = document.getElementById('uniTaskInput').value.trim();
+  const subject = document.getElementById('uniSubject').value.trim();
+  const dueDate = document.getElementById('uniDueDate').value;
+  const priority = document.getElementById('uniPriority').value;
+  
+  if (!text) {
+    showToast('Please enter a task! 📝');
+    return;
+  }
+  
+  appData.uniTasks.push({
+    id: Date.now(),
+    text,
+    subject: subject || 'General',
+    dueDate,
+    priority,
+    completed: false
+  });
+  
+  saveData();
+  renderUniTasks();
+  document.getElementById('uniTaskInput').value = '';
+  document.getElementById('uniSubject').value = '';
+  showToast('Uni task added! 🎓');
+}
+
+function toggleUniTask(id) {
+  const task = appData.uniTasks.find(t => t.id === id);
+  if (task) {
+    task.completed = !task.completed;
+    saveData();
+    renderUniTasks();
+    if (task.completed) showToast('Academic task done! 🎉');
+  }
+}
+
+function deleteUniTask(id) {
+  appData.uniTasks = appData.uniTasks.filter(t => t.id !== id);
+  saveData();
+  renderUniTasks();
+}
+
+function renderUniTasks() {
+  const list = document.getElementById('uniTaskList');
+  const tasks = appData.uniTasks;
+  
+  if (tasks.length === 0) {
+    list.innerHTML = '<div class="no-items">No uni tasks yet. Add your assignments! 📖</div>';
+    document.getElementById('uniProgress').textContent = '0/0 done';
+    document.getElementById('uniProgressBar').style.width = '0%';
+    return;
+  }
+  
+  const done = tasks.filter(t => t.completed).length;
+  const pct = Math.round((done / tasks.length) * 100);
+  document.getElementById('uniProgress').textContent = `${done}/${tasks.length} done`;
+  document.getElementById('uniProgressBar').style.width = pct + '%';
+  
+  const sorted = [...tasks].sort((a, b) => {
+    if (a.completed !== b.completed) return a.completed ? 1 : -1;
+    const pOrder = { high: 0, medium: 1, low: 2 };
+    return pOrder[a.priority] - pOrder[b.priority];
+  });
+  
+  list.innerHTML = sorted.map(t => {
+    const tagClass = { high: 'tag-high', medium: 'tag-medium', low: 'tag-low' };
+    const tagLabel = { high: '🔴 Urgent', medium: '🟡 Med', low: '🟢 Low' };
+    const dueDateStr = t.dueDate ? `📅 ${t.dueDate}` : '';
+    
+    return `
+      <li class="task-item ${t.completed ? 'completed' : ''}">
+        <div class="task-checkbox ${t.completed ? 'checked' : ''}" onclick="toggleUniTask(${t.id})">
+          ${t.completed ? '✓' : ''}
+        </div>
+        <div class="task-text">
+          <div>${t.text}</div>
+          <div style="font-size:0.8rem;color:var(--text-muted);margin-top:0.2rem;">
+            📚 ${t.subject} ${dueDateStr ? '• ' + dueDateStr : ''}
+          </div>
+        </div>
+        <div class="task-meta">
+          <span class="task-tag ${tagClass[t.priority]}">${tagLabel[t.priority]}</span>
+          <button class="delete-btn-inline" onclick="deleteUniTask(${t.id})">✕</button>
+        </div>
+      </li>
+    `;
+  }).join('');
+}
+
+// ===== WORKOUT =====
+function showWorkoutTab(tab) {
+  document.querySelectorAll('#section-workout .tab-content').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('#section-workout .tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('workout-' + tab).classList.add('active');
+  event.target.classList.add('active');
+}
+
+function addWorkoutPlan() {
+  const day = document.getElementById('workoutDay').value;
+  const name = document.getElementById('workoutName').value.trim();
+  const exercises = document.getElementById('workoutExercises').value.trim();
+  
+  if (!name || !exercises) {
+    showToast('Please fill in workout details! 💪');
+    return;
+  }
+  
+  appData.workoutPlans.push({
+    id: Date.now(),
+    day,
+    name,
+    exercises: exercises.split('\n').filter(e => e.trim())
+  });
+  
+  saveData();
+  renderWorkoutPlans();
+  document.getElementById('workoutName').value = '';
+  document.getElementById('workoutExercises').value = '';
+  showToast('Workout plan added! 💪');
+}
+
+function deleteWorkoutPlan(id) {
+  appData.workoutPlans = appData.workoutPlans.filter(p => p.id !== id);
+  saveData();
+  renderWorkoutPlans();
+}
+
+function renderWorkoutPlans() {
+  const grid = document.getElementById('workoutPlanGrid');
+  const plans = appData.workoutPlans;
+  
+  if (plans.length === 0) {
+    grid.innerHTML = '<div class="no-items" style="grid-column:1/-1;">No workout plans yet. Create your schedule! 🏋️</div>';
+    return;
+  }
+  
+  const dayOrder = ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'];
+  const sorted = [...plans].sort((a, b) => dayOrder.indexOf(a.day) - dayOrder.indexOf(b.day));
+  const today = dayOrder[new Date().getDay() === 0 ? 6 : new Date().getDay() - 1];
+  
+  grid.innerHTML = sorted.map(p => `
+    <div class="workout-card">
+      <div style="display:flex;justify-content:space-between;align-items:center;">
+        <div class="workout-day">${p.day} ${p.day === today ? '<span class="today-marker">TODAY</span>' : ''}</div>
+        <button class="delete-btn-inline" onclick="deleteWorkoutPlan(${p.id})">✕</button>
+      </div>
+      <div class="workout-name">${p.name}</div>
+      <ul class="exercise-list">
+        ${p.exercises.map(e => `
+          <li class="exercise-item">
+            <div class="exercise-dot"></div>
+            <span>${e}</span>
+          </li>
+        `).join('')}
+      </ul>
+    </div>
+  `).join('');
+}
+
+function addWorkoutLog() {
+  const workout = document.getElementById('workoutLogInput').value.trim();
+  const duration = document.getElementById('workoutDuration').value;
+  const intensity = document.getElementById('workoutIntensity').value;
+  
+  if (!workout) {
+    showToast('Please describe your workout! 💪');
+    return;
+  }
+  
+  appData.workoutLogs.unshift({
+    id: Date.now(),
+    workout,
+    duration: duration || 'N/A',
+    intensity,
+    date: new Date().toISOString().split('T')[0]
+  });
+  
+  saveData();
+  renderWorkoutLogs();
+  document.getElementById('workoutLogInput').value = '';
+  document.getElementById('workoutDuration').value = '';
+  showToast('Workout logged! 🏋️');
+}
+
+function deleteWorkoutLog(id) {
+  appData.workoutLogs = appData.workoutLogs.filter(l => l.id !== id);
+  saveData();
+  renderWorkoutLogs();
+}
+
+function renderWorkoutLogs() {
+  const list = document.getElementById('workoutLogList');
+  
+  if (appData.workoutLogs.length === 0) {
+    list.innerHTML = '<div class="no-items">No workouts logged yet. Let\'s go! 🔥</div>';
+    return;
+  }
+  
+  list.innerHTML = appData.workoutLogs.slice(0, 20).map(l => {
+    const intensityEmoji = { light: '💚', moderate: '💛', intense: '❤️' };
+    return `
+      <div class="transaction-item">
+        <div class="transaction-info">
+          <div class="transaction-icon" style="background:rgba(6,182,212,0.15);">🏋️</div>
+          <div class="transaction-details">
+            <h4>${l.workout}</h4>
+            <span>${l.date} • ${l.duration} min • ${intensityEmoji[l.intensity]} ${l.intensity}</span>
+          </div>
+        </div>
+        <button class="delete-btn-inline" onclick="deleteWorkoutLog(${l.id})">✕</button>
+      </div>
+    `;
+  }).join('');
+}
+
+const WORKOUT_SUGGESTIONS = [
+  {
+    emoji: '🏋️', name: 'Push Day Power',
+    desc: 'Bench Press 4x8, Incline DB Press 3x10, Shoulder Press 3x10, Lateral Raises 3x15, Tricep Dips 3x12, Tricep Pushdowns 3x15'
+  },
+  {
+    emoji: '💪', name: 'Pull Day Strength',
+    desc: 'Deadlifts 4x6, Barbell Rows 4x8, Lat Pulldowns 3x10, Face Pulls 3x15, Bicep Curls 3x12, Hammer Curls 3x12'
+  },
+  {
+    emoji: '🦵', name: 'Leg Day Beast',
+    desc: 'Squats 4x8, Romanian Deadlifts 3x10, Leg Press 3x12, Walking Lunges 3x12, Leg Curls 3x15, Calf Raises 4x20'
+  },
+  {
+    emoji: '🔥', name: 'HIIT Cardio Blast',
+    desc: '30s Burpees / 30s Rest x 5, 30s Mountain Climbers / 30s Rest x 5, 30s Jump Squats / 30s Rest x 5, 1min Plank x 3'
+  },
+  {
+    emoji: '🧘', name: 'Active Recovery & Yoga',
+    desc: '10min Light Walk, Sun Salutations x 5, Warrior Poses, Pigeon Stretch, Cat-Cow Stretch, Child\'s Pose, 10min Meditation'
+  },
+  {
+    emoji: '🏃', name: 'Cardio Endurance',
+    desc: '5min Warm-up Walk, 20min Jog/Run, 5min Sprint Intervals (30s sprint/60s jog x 5), 10min Cool-down Walk, Stretching'
+  },
+  {
+    emoji: '💥', name: 'Full Body Functional',
+    desc: 'Kettlebell Swings 3x15, Turkish Get-ups 2x5/side, Box Jumps 3x10, Battle Ropes 3x30s, Farmer\'s Walk 3x40m, Plank 3x60s'
+  },
+  {
+    emoji: '🎯', name: 'Core & Abs Destroyer',
+    desc: 'Hanging Leg Raises 3x12, Cable Crunches 3x15, Russian Twists 3x20, Ab Wheel Rollouts 3x10, Side Planks 3x45s, Dead Bugs 3x12'
+  },
+  {
+    emoji: '🤸', name: 'Bodyweight Challenge',
+    desc: '100 Push-ups, 100 Squats, 50 Pull-ups (or rows), 100 Lunges, 200 Crunches, 3min Plank — break into sets as needed!'
+  },
+  {
+    emoji: '🚴', name: 'Low Impact Cardio',
+    desc: '30min Cycling or Swimming, 10min Elliptical, Hip Circles, Light Stretching, Foam Rolling — perfect for recovery days!'
+  },
+  {
+    emoji: '🥊', name: 'Shadow Boxing & Cardio',
+    desc: '3min Shadow Boxing x 5 rounds, 50 Jump Rope, 20 Burpees, 30 High Knees, 20 Squat Jumps, Cool-down Stretch'
+  },
+  {
+    emoji: '🏔️', name: 'Outdoor Adventure',
+    desc: 'Go for a 30-60min hike, trail run, or outdoor workout. Include bodyweight exercises at stops: push-ups, lunges, squats!'
+  }
+];
+
+function suggestWorkout() {
+  const suggestion = WORKOUT_SUGGESTIONS[Math.floor(Math.random() * WORKOUT_SUGGESTIONS.length)];
+  document.getElementById('workoutSuggestEmoji').textContent = suggestion.emoji;
+  document.getElementById('workoutSuggestTitle').textContent = suggestion.name;
+  document.getElementById('workoutSuggestDesc').textContent = suggestion.desc;
+}
+
+// ===== CHESS =====
+function addChessTask() {
+  const text = document.getElementById('chessTaskInput').value.trim();
+  const category = document.getElementById('chessCategory').value;
+  const priority = document.getElementById('chessPriority').value;
+  
+  if (!text) {
+    showToast('Please enter a chess task! ♟️');
+    return;
+  }
+  
+  appData.chessTasks.push({
+    id: Date.now(),
+    text,
+    category,
+    priority,
+    completed: false
+  });
+  
+  saveData();
+  renderChessTasks();
+  document.getElementById('chessTaskInput').value = '';
+  showToast('Chess task added! ♟️');
+}
+
+function toggleChessTask(id) {
+  const task = appData.chessTasks.find(t => t.id === id);
+  if (task) {
+    task.completed = !task.completed;
+    saveData();
+    renderChessTasks();
+    if (task.completed) showToast('Chess task completed! ♟️✅');
+  }
+}
+
+function deleteChessTask(id) {
+  appData.chessTasks = appData.chessTasks.filter(t => t.id !== id);
+  saveData();
+  renderChessTasks();
+}
+
+function renderChessTasks() {
+  const list = document.getElementById('chessTaskList');
+  const tasks = appData.chessTasks;
+  
+  if (tasks.length === 0) {
+    list.innerHTML = '<div class="no-items">No chess tasks yet. Time to improve! ♟️</div>';
+    document.getElementById('chessProgress').textContent = '0/0 done';
+    document.getElementById('chessProgressBar').style.width = '0%';
+    document.getElementById('chessTotalDone').textContent = '0';
+    document.getElementById('chessTotalPending').textContent = '0';
+    return;
+  }
+  
+  const done = tasks.filter(t => t.completed).length;
+  const pct = Math.round((done / tasks.length) * 100);
+  document.getElementById('chessProgress').textContent = `${done}/${tasks.length} done`;
+  document.getElementById('chessProgressBar').style.width = pct + '%';
+  document.getElementById('chessTotalDone').textContent = done;
+  document.getElementById('chessTotalPending').textContent = tasks.length - done;
+  
+  const catEmoji = { puzzle: '🧩', opening: '📖', endgame: '🏁', game: '🎮', analysis: '🔍', tactics: '⚔️' };
+  const tagClass = { high: 'tag-high', medium: 'tag-medium', low: 'tag-low' };
+  
+  const sorted = [...tasks].sort((a, b) => {
+    if (a.completed !== b.completed) return a.completed ? 1 : -1;
+    return 0;
+  });
+  
+  list.innerHTML = sorted.map(t => `
+    <li class="task-item ${t.completed ? 'completed' : ''}">
+      <div class="task-checkbox ${t.completed ? 'checked' : ''}" onclick="toggleChessTask(${t.id})">
+        ${t.completed ? '✓' : ''}
+      </div>
+      <div class="task-text">
+        <div>${t.text}</div>
+        <div style="font-size:0.8rem;color:var(--text-muted);margin-top:0.2rem;">${catEmoji[t.category] || '♟️'} ${t.category}</div>
+      </div>
+      <div class="task-meta">
+        <span class="task-tag ${tagClass[t.priority]}">${t.priority}</span>
+        <button class="delete-btn-inline" onclick="deleteChessTask(${t.id})">✕</button>
+      </div>
+    </li>
+  `).join('');
+}
+
+function renderChessBoard() {
+  const board = document.getElementById('chessBoard');
+  const pieces = ['♜','♞','♝','♛','♚','♝','♞','♜'];
+  const pawns = '♟';
+  const wPieces = ['♖','♘','♗','♕','♔','♗','♘','♖'];
+  const wPawns = '♙';
+  
+  let html = '';
+  for (let r = 0; r < 8; r++) {
+    for (let c = 0; c < 8; c++) {
+      const light = (r + c) % 2 === 0;
+      let piece = '';
+      if (r === 0) piece = pieces[c];
+      else if (r === 1) piece = pawns;
+      else if (r === 6) piece = wPawns;
+      else if (r === 7) piece = wPieces[c];
+      html += `<div class="chess-square ${light ? 'light' : 'dark'}">${piece}</div>`;
+    }
+  }
+  board.innerHTML = html;
+}
+
+// ===== MOTIVATION =====
+let currentMotivCategory = 'all';
+
+function getMotivationQuotes(category) {
+  const quotes = {
+    selfcare: [
+      { quote: "You are allowed to be both a masterpiece and a work in progress simultaneously.", author: "Sophia Bush", emoji: "🦋" },
+      { quote: "Rest is not a reward. It is a necessity.", author: "Unknown", emoji: "🌙" },
+      { quote: "You don't have to be perfect to be worthy of love.", author: "Unknown", emoji: "💕" },
+      { quote: "Healing is not linear. Be patient with yourself.", author: "Unknown", emoji: "🌱" },
+      { quote: "Your mental health is more important than your grades, your job, and your bank account.", author: "Unknown", emoji: "🧘" },
+      { quote: "Self-care is not selfish. You cannot serve from an empty vessel.", author: "Eleanor Brown", emoji: "✨" },
+      { quote: "Be gentle with yourself. You're doing the best you can.", author: "Unknown", emoji: "🌸" },
+      { quote: "You are enough. Just as you are.", author: "Meghan Markle", emoji: "💫" },
+      { quote: "It's okay to not be okay, as long as you don't stay there.", author: "Unknown", emoji: "🌈" },
+      { quote: "Set boundaries. Your peace is more important than their comfort.", author: "Unknown", emoji: "🛡️" }
+    ],
+    study: [
+      { quote: "The expert in anything was once a beginner.", author: "Helen Hayes", emoji: "📚" },
+      { quote: "Education is the passport to the future.", author: "Malcolm X", emoji: "🎓" },
+      { quote: "Study hard, for the well is deep, and our brains are shallow.", author: "Richard Baxter", emoji: "🧠" },
+      { quote: "The beautiful thing about learning is that no one can take it away from you.", author: "B.B. King", emoji: "💡" },
+      { quote: "Don't let what you cannot do interfere with what you can do.", author: "John Wooden", emoji: "🎯" },
+      { quote: "Success is the sum of small efforts repeated day in and day out.", author: "Robert Collier", emoji: "📖" },
+      { quote: "Your future self will thank you for studying today.", author: "Unknown", emoji: "⏰" },
+      { quote: "A year from now, you'll wish you had started today.", author: "Karen Lamb", emoji: "🚀" },
+      { quote: "The only way to do great work is to love what you study.", author: "Unknown", emoji: "❤️" },
+      { quote: "Discipline is choosing between what you want now and what you want most.", author: "Abraham Lincoln", emoji: "💪" }
+    ],
+    work: [
+      { quote: "The only way to do great work is to love what you do.", author: "Steve Jobs", emoji: "💼" },
+      { quote: "Don't watch the clock; do what it does. Keep going.", author: "Sam Levenson", emoji: "⏱️" },
+      { quote: "Hustle in silence. Let your success make the noise.", author: "Unknown", emoji: "🔥" },
+      { quote: "Your limitation—it's only your imagination.", author: "Unknown", emoji: "🌟" },
+      { quote: "Dream bigger. Do bigger.", author: "Unknown", emoji: "🎯" },
+      { quote: "Work hard in silence, let your success be your noise.", author: "Frank Ocean", emoji: "💎" },
+      { quote: "The harder you work for something, the greater you'll feel when you achieve it.", author: "Unknown", emoji: "🏆" },
+      { quote: "Opportunities don't happen. You create them.", author: "Chris Grosser", emoji: "⚡" },
+      { quote: "Don't stop when you're tired. Stop when you're done.", author: "Unknown", emoji: "💪" },
+      { quote: "Every morning brings new potential, but if you dwell on the misfortunes of the day before, you tend to overlook tremendous opportunities.", author: "Harvey Mackay", emoji: "🌅" }
+    ],
+    chess: [
+      { quote: "Chess is the gymnasium of the mind.", author: "Blaise Pascal", emoji: "♟️" },
+      { quote: "Every chess master was once a beginner.", author: "Irving Chernev", emoji: "🏆" },
+      { quote: "In chess, as in life, forethought wins.", author: "Charles Buxton", emoji: "🧠" },
+      { quote: "The pin is mightier than the sword.", author: "Fred Reinfeld", emoji: "⚔️" },
+      { quote: "You may learn much more from a game you lose than from a game you win.", author: "José Capablanca", emoji: "📖" },
+      { quote: "Chess is life in miniature. Chess is a struggle, chess is battles.", author: "Garry Kasparov", emoji: "♔" },
+      { quote: "Tactics flow from a superior position.", author: "Bobby Fischer", emoji: "🎯" },
+      { quote: "When you see a good move, look for a better one.", author: "Emanuel Lasker", emoji: "👀" },
+      { quote: "Chess is 99% tactics.", author: "Richard Teichmann", emoji: "⚡" },
+      { quote: "The blunders are all there on the board, waiting to be made.", author: "Savielly Tartakower", emoji: "😅" }
+    ],
+    money: [
+      { quote: "Money is a tool. Used properly it makes something beautiful; used wrong, it makes a mess.", author: "Bradley Vinson", emoji: "💰" },
+      { quote: "The goal isn't more money. The goal is living life on your terms.", author: "Chris Brogan", emoji: "🏖️" },
+      { quote: "Financial freedom is available to those who learn about it and work for it.", author: "Robert Kiyosaki", emoji: "💎" },
+      { quote: "Don't tell me what you value. Show me your budget, and I'll tell you what you value.", author: "Joe Biden", emoji: "📊" },
+      { quote: "Wealth is not about having a lot of money; it's about having a lot of options.", author: "Chris Rock", emoji: "🌟" },
+      { quote: "The rich invest in time, the poor invest in money.", author: "Warren Buffett", emoji: "⏳" },
+      { quote: "It's not about how much money you make, but how much money you keep.", author: "Robert Kiyosaki", emoji: "🏦" },
+      { quote: "Never depend on a single income. Make investments to create a second source.", author: "Warren Buffett", emoji: "📈" },
+      { quote: "Be so good at saving that even your bank account gets jealous of your discipline.", author: "Unknown", emoji: "💪" },
+      { quote: "Money looks better in your bank account than on your feet.", author: "Sophia Amoruso", emoji: "👑" }
+    ],
+    fitness: [
+      { quote: "Nobody is going to do it for you. Get up and do it yourself.", author: "Unknown", emoji: "🔥" },
+      { quote: "Your body hears everything your mind says. Think positive.", author: "Unknown", emoji: "💪" },
+      { quote: "Stop rewarding yourself with food. You are not a dog.", author: "Unknown", emoji: "🚫" },
+      { quote: "Sweat is fat crying. Make it weep.", author: "Unknown", emoji: "💦" },
+      { quote: "You didn't gain it overnight. You won't lose it overnight. Be patient.", author: "Unknown", emoji: "⏰" },
+      { quote: "Being pretty is not just about your face. It's about your body, your mind, and your soul.", author: "Unknown", emoji: "👑" },
+      { quote: "The only bad workout is the one that didn't happen.", author: "Unknown", emoji: "🏋️" },
+      { quote: "Imagine the glow-up. Now work for it.", author: "Unknown", emoji: "✨" },
+      { quote: "You're one workout away from a good mood.", author: "Unknown", emoji: "😊" },
+      { quote: "Skip the excuses. Not the workouts.", author: "Unknown", emoji: "💥" },
+      { quote: "Don't wish for a good body. Work for it.", author: "Unknown", emoji: "🎯" },
+      { quote: "Your body is a reflection of your lifestyle. Make it a masterpiece.", author: "Unknown", emoji: "🖼️" },
+      { quote: "Pretty hurts? No, pretty WORKS. Get to work.", author: "Unknown", emoji: "💅" },
+      { quote: "The pain you feel today will be the strength you feel tomorrow.", author: "Unknown", emoji: "⚡" }
+    ]
+  };
+  
+  if (category === 'all') {
+    let all = [];
+    Object.values(quotes).forEach(arr => all = all.concat(arr));
+    return all;
+  }
+  
+  return quotes[category] || quotes.selfcare;
+}
+
+function setMotivationCategory(cat, btn) {
+  currentMotivCategory = cat;
+  document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+  if (btn) btn.classList.add('active');
+  getMotivation();
+}
+
+function getMotivation() {
+  const quotes = getMotivationQuotes(currentMotivCategory);
+  const q = quotes[Math.floor(Math.random() * quotes.length)];
+  
+  document.getElementById('motivEmoji').textContent = q.emoji;
+  document.getElementById('motivQuote').textContent = q.quote;
+  document.getElementById('motivAuthor').textContent = '— ' + q.author;
+}
+
+// ===== SIDE QUESTS =====
+const SIDE_QUESTS = [
+  { emoji: '📸', title: 'Photo Walk', desc: 'Take a 20-minute walk and photograph 10 interesting things you see. Look for patterns, colors, and textures!' },
+  { emoji: '✍️', title: 'Write a Letter', desc: 'Write a handwritten letter to someone you appreciate. It could be a friend, family member, or even your future self!' },
+  { emoji: '🎨', title: 'Doodle Session', desc: 'Spend 15 minutes doodling whatever comes to mind. No rules, no judgment — just let your creativity flow!' },
+  { emoji: '📚', title: 'Read 20 Pages', desc: 'Pick up any book and read 20 pages. Fiction, non-fiction, self-help — anything that catches your interest!' },
+  { emoji: '🧹', title: 'Declutter Zone', desc: 'Pick one area of your room/desk and spend 15 minutes decluttering it. A clean space = a clear mind!' },
+  { emoji: '🎵', title: 'Music Discovery', desc: 'Find 5 new songs from a genre you don\'t usually listen to. Create a "Discovery" playlist!' },
+  { emoji: '🧘', title: '10-Min Meditation', desc: 'Find a quiet spot and meditate for 10 minutes. Focus on your breathing and let go of all thoughts.' },
+  { emoji: '🍳', title: 'Cook Something New', desc: 'Try cooking a recipe you\'ve never made before. It could be simple — even making fancy toast counts!' },
+  { emoji: '💌', title: 'Compliment 3 People', desc: 'Send genuine compliments to 3 different people today. Make someone\'s day a little brighter!' },
+  { emoji: '🌿', title: 'Nature Break', desc: 'Spend 20 minutes outside in nature. Touch grass, literally. Feel the sun, breathe the air.' },
+  { emoji: '📝', title: 'Gratitude Journal', desc: 'Write down 10 things you\'re grateful for right now. Big or small, everything counts!' },
+  { emoji: '🎲', title: 'Learn a Card Trick', desc: 'Watch a tutorial and learn one card trick or magic trick. Impress someone later!' },
+  { emoji: '🏃', title: 'Speed Walk Challenge', desc: 'Speed walk for 10 minutes as fast as you can without running. Get that heart pumping!' },
+  { emoji: '🎬', title: 'Short Film Time', desc: 'Watch a highly-rated short film on YouTube (under 15 min). Explore a new perspective!' },
+  { emoji: '🧩', title: 'Brain Teaser', desc: 'Solve 5 riddles or brain teasers. Google "fun riddles" and test your brain power!' },
+  { emoji: '📞', title: 'Call Someone', desc: 'Call a friend or family member you haven\'t talked to in a while. Connection matters!' },
+  { emoji: '🎯', title: 'Learn 10 Words', desc: 'Learn 10 new vocabulary words in any language. Use them in sentences!' },
+  { emoji: '🌅', title: 'Watch Sunset/Sunrise', desc: 'If timing allows, watch the sunset or sunrise. Take a moment to appreciate the beauty.' },
+  { emoji: '💻', title: 'Code a Mini Project', desc: 'Spend 30 minutes coding something small and fun. A calculator, a random quote generator, anything!' },
+  { emoji: '🎭', title: 'Random Act of Kindness', desc: 'Do something kind for a stranger. Hold a door, pay a compliment, help someone carry something.' },
+  { emoji: '🗺️', title: 'Explore New Area', desc: 'Walk or drive to a part of your city/town you\'ve never been to. Discover something new!' },
+  { emoji: '📺', title: 'Documentary Time', desc: 'Watch a documentary about a topic you know nothing about. Expand your horizons!' },
+  { emoji: '🎤', title: 'Shower Concert', desc: 'Have a full-on concert in the shower (or your room). Sing your heart out to your favorite songs!' },
+  { emoji: '✏️', title: 'Draw Your Pet/Plant', desc: 'Draw a portrait of your pet, a plant, or an object on your desk. Art skill doesn\'t matter!' },
+  { emoji: '🧪', title: 'DIY Experiment', desc: 'Try a simple science experiment or life hack you found online. Test if those TikTok hacks actually work!' },
+  { emoji: '🎮', title: 'Try a New Game', desc: 'Download and play a game you\'ve never tried before. Mobile, PC, board game — anything!' },
+  { emoji: '📐', title: 'Origami Challenge', desc: 'Learn to fold 3 different origami shapes. Start with a crane and level up!' },
+  { emoji: '🌍', title: 'Virtual Travel', desc: 'Use Google Earth/Street View to explore a random city you\'ve always wanted to visit!' },
+  { emoji: '🧠', title: 'TED Talk Marathon', desc: 'Watch 3 TED Talks on topics you\'re curious about. Take notes on your favorite ideas!' },
+  { emoji: '💃', title: 'Dance Break', desc: 'Put on your favorite upbeat playlist and dance for 10 minutes straight. No judgment, just vibes!' }
+];
+
+function getRandomQuest() {
+  const quest = SIDE_QUESTS[Math.floor(Math.random() * SIDE_QUESTS.length)];
+  
+  document.getElementById('questEmoji').textContent = quest.emoji;
+  document.getElementById('questTitle').textContent = quest.title;
+  document.getElementById('questDesc').textContent = quest.desc;
+  
+  appData.questHistory.unshift({
+    ...quest,
+    date: new Date().toLocaleDateString()
+  });
+  
+  if (appData.questHistory.length > 50) appData.questHistory = appData.questHistory.slice(0, 50);
+  
+  saveData();
+  renderQuestHistory();
+}
+
+function renderQuestHistory() {
+  const container = document.getElementById('questHistory');
+  
+  if (appData.questHistory.length === 0) {
+    container.innerHTML = '<div class="no-items">No quests rolled yet! 🎯</div>';
+    return;
+  }
+  
+  container.innerHTML = appData.questHistory.slice(0, 10).map(q => `
+    <div class="transaction-item">
+      <div class="transaction-info">
+        <div class="transaction-icon" style="background:rgba(59,130,246,0.15);font-size:1.5rem;">${q.emoji}</div>
+        <div class="transaction-details">
+          <h4>${q.title}</h4>
+          <span>${q.date}</span>
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+
+function clearQuestHistory() {
+  appData.questHistory = [];
+  saveData();
+  renderQuestHistory();
+  showToast('Quest history cleared! 🗑️');
+}
+
+// ===== STREAK & REWARDS =====
+const REWARDS = [
+  { emoji: '🍕', title: 'Treat Yourself to a Favorite Meal', desc: 'Order your favorite food or cook something special!' },
+  { emoji: '🎬', title: 'Movie Night!', desc: 'Watch that movie you\'ve been wanting to see. Guilt-free!' },
+  { emoji: '🛁', title: 'Spa Day', desc: 'Take a long bath, do a face mask, and fully pamper yourself!' },
+  { emoji: '🎮', title: 'Gaming Session', desc: 'Allow yourself 2 hours of uninterrupted gaming time!' },
+  { emoji: '☕', title: 'Fancy Coffee', desc: 'Get yourself that expensive coffee drink you love!' },
+  { emoji: '📱', title: 'Scroll Time', desc: 'Guilt-free social media scrolling for 1 hour!' },
+  { emoji: '🛍️', title: 'Small Shopping Spree', desc: 'Buy yourself something small you\'ve been eyeing (under $20)!' },
+  { emoji: '😴', title: 'Sleep In Day', desc: 'Tomorrow, you can sleep in as long as you want!' },
+  { emoji: '🎧', title: 'Music & Chill', desc: 'Spend an hour listening to your favorite music with zero interruptions!' },
+  { emoji: '🍦', title: 'Dessert Time', desc: 'Get yourself your favorite dessert. You earned it!' },
+  { emoji: '📖', title: 'Book Break', desc: 'Spend time reading that book you love, with your favorite drink!' },
+  { emoji: '🧸', title: 'Comfort Day', desc: 'Wear your comfiest clothes and do absolutely nothing productive. You deserve it!' },
+  { emoji: '🌮', title: 'Take-Out Night', desc: 'Order from your favorite restaurant. No cooking tonight!' },
+  { emoji: '🎨', title: 'Creative Hour', desc: 'Spend an hour doing any creative activity you enjoy - drawing, music, crafts!' },
+  { emoji: '🌳', title: 'Nature Reward', desc: 'Take a peaceful walk in your favorite park or nature spot!' }
+];
+
+function dailyCheckin() {
+  const today = new Date().toISOString().split('T')[0];
+  
+  if (appData.streak.lastCheckin === today) {
+    showToast('Already checked in today! ✅');
+    return;
+  }
+  
+  const yesterday = new Date();
+  yesterday.setDate(yesterday.getDate() - 1);
+  const yesterdayStr = yesterday.toISOString().split('T')[0];
+  
+  if (appData.streak.lastCheckin === yesterdayStr || appData.streak.lastCheckin === null) {
+    appData.streak.count++;
+  } else {
+    // Streak broken
+    appData.streak.count = 1;
+  }
+  
+  appData.streak.lastCheckin = today;
+  
+  if (!appData.streak.history) appData.streak.history = [];
+  appData.streak.history.push(today);
+  if (appData.streak.history.length > 30) appData.streak.history = appData.streak.history.slice(-30);
+  
+  // Check for 7-day reward
+  if (appData.streak.count > 0 && appData.streak.count % 7 === 0) {
+    grantReward();
+  }
+  
+  saveData();
+  renderStreak();
+  showConfetti();
+  showToast('Checked in! 🔥 ' + appData.streak.count + ' day streak!');
+}
+
+function grantReward() {
+  const reward = REWARDS[Math.floor(Math.random() * REWARDS.length)];
+  
+  appData.rewards.unshift({
+    ...reward,
+    date: new Date().toLocaleDateString(),
+    streakDay: appData.streak.count
+  });
+  
+  saveData();
+  
+  document.getElementById('rewardSection').style.display = 'block';
+  document.getElementById('rewardTitle').textContent = reward.emoji + ' ' + reward.title;
+  document.getElementById('rewardDesc').textContent = reward.desc + ' (Earned at ' + appData.streak.count + '-day streak!)';
+  
+  renderRewardHistory();
+}
+
+function renderStreak() {
+  const streak = appData.streak;
+  const today = new Date().toISOString().split('T')[0];
+  
+  document.getElementById('currentStreakBig').textContent = streak.count;
+  document.getElementById('headerStreakCount').textContent = streak.count;
+  
+  // Render 7 streak day boxes
+  const container = document.getElementById('streakDays');
+  const dayInCycle = streak.count % 7 || (streak.count > 0 ? 7 : 0);
+  
+  let html = '';
+  for (let i = 1; i <= 7; i++) {
+    const completed = i <= dayInCycle;
+    html += `
+      <div class="streak-day ${completed ? 'completed' : ''}">
+        <div class="day-num">${i}</div>
+        <div style="font-size:0.6rem;">${completed ? '✅' : '⬜'}</div>
+      </div>
+    `;
+  }
+  container.innerHTML = html;
+  
+  // Check-in button
+  const btn = document.getElementById('checkinBtn');
+  if (streak.lastCheckin === today) {
+    btn.disabled = true;
+    btn.textContent = '✅ Checked In!';
+    document.getElementById('checkinStatus').textContent = 'You\'ve already checked in today. Come back tomorrow! 🌟';
+  } else {
+    btn.disabled = false;
+    btn.textContent = '✅ Daily Check-in';
+    document.getElementById('checkinStatus').textContent = 'Check in to maintain your streak!';
+  }
+  
+  // Show reward if applicable
+  if (streak.count > 0 && streak.count % 7 === 0 && appData.rewards.length > 0) {
+    const lastReward = appData.rewards[0];
+    document.getElementById('rewardSection').style.display = 'block';
+    document.getElementById('rewardTitle').textContent = lastReward.emoji + ' ' + lastReward.title;
+    document.getElementById('rewardDesc').textContent = lastReward.desc;
+  }
+  
+  renderRewardHistory();
+}
+
+function renderRewardHistory() {
+  const container = document.getElementById('rewardHistory');
+  
+  if (!appData.rewards || appData.rewards.length === 0) {
+    container.innerHTML = '<div class="no-items">Complete a 7-day streak to earn rewards! 🌟</div>';
+    return;
+  }
+  
+  container.innerHTML = appData.rewards.slice(0, 10).map(r => `
+    <div class="transaction-item">
+      <div class="transaction-info">
+        <div class="transaction-icon" style="background:rgba(245,158,11,0.15);font-size:1.5rem;">${r.emoji}</div>
+        <div class="transaction-details">
+          <h4>${r.title}</h4>
+          <span>${r.date} • ${r.streakDay}-day streak 🔥</span>
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+
+// ===== CONFETTI =====
+function showConfetti() {
+  const container = document.getElementById('confettiContainer');
+  const colors = ['#a855f7', '#ec4899', '#3b82f6', '#10b981', '#f59e0b', '#06b6d4', '#f97316'];
+  
+  for (let i = 0; i < 50; i++) {
+    const piece = document.createElement('div');
+    piece.className = 'confetti-piece';
+    piece.style.left = Math.random() * 100 + 'vw';
+    piece.style.top = (50 + Math.random() * 50) + 'vh';
+    piece.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+    piece.style.width = (5 + Math.random() * 10) + 'px';
+    piece.style.height = piece.style.width;
+    piece.style.animationDuration = (1 + Math.random() * 1.5) + 's';
+    piece.style.animationDelay = (Math.random() * 0.5) + 's';
+    container.appendChild(piece);
+  }
+  
+  setTimeout(() => {
+    container.innerHTML = '';
+  }, 3000);
+}
+
+// ===== TOAST NOTIFICATION =====
+function showToast(message) {
+  const existing = document.querySelector('.toast-notification');
+  if (existing) existing.remove();
+  
+  const toast = document.createElement('div');
+  toast.className = 'toast-notification';
+  toast.textContent = message;
+  toast.style.cssText = `
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--bg-card);
+    border: 1px solid var(--accent-purple);
+    color: var(--text-primary);
+    padding: 1rem 2rem;
+    border-radius: 16px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    z-index: 9999;
+    box-shadow: 0 8px 32px rgba(168, 85, 247, 0.3);
+    animation: slideUp 0.4s ease;
+    font-family: 'Inter', sans-serif;
+  `;
+  
+  document.body.appendChild(toast);
+  
+  setTimeout(() => {
+    toast.style.opacity = '0';
+    toast.style.transition = 'opacity 0.3s';
+    setTimeout(() => toast.remove(), 300);
+  }, 2500);
+}
+
+// ===== DATA EXPORT/IMPORT =====
+function exportData() {
+  const dataStr = JSON.stringify(appData, null, 2);
+  const blob = new Blob([dataStr], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'elyveling_backup_' + new Date().toISOString().split('T')[0] + '.json';
+  a.click();
+  
+  URL.revokeObjectURL(url);
+  showToast('Data exported! 📤');
+}
+
+function importData(event) {
+  const file = event.target.files[0];
+  if (!file) return;
+  
+  const reader = new FileReader();
+  reader.onload = function(e) {
+    try {
+      const imported = JSON.parse(e.target.result);
+      appData = { ...DEFAULT_DATA, ...imported, streak: { ...DEFAULT_DATA.streak, ...(imported.streak || {}) } };
+      saveData();
+      refreshAll();
+      showToast('Data imported successfully! 📥');
+    } catch (err) {
+      showToast('Error importing data. Invalid file! ❌');
+    }
+  };
+  reader.readAsText(file);
+  event.target.value = '';
+}
+
+function clearAllData() {
+  if (confirm('⚠️ Are you sure you want to clear ALL data? This cannot be undone!')) {
+    if (confirm('Really? This will delete everything — tasks, finances, streak, everything! 😱')) {
+      appData = JSON.parse(JSON.stringify(DEFAULT_DATA));
+      saveData();
+      refreshAll();
+      showToast('All data cleared! 🗑️');
+    }
+  }
+}
+
+// ===== REFRESH ALL =====
+function refreshAll() {
+  updateWelcome();
+  renderTransactions();
+  updateFinanceStats();
+  renderDailyTasks();
+  renderUniTasks();
+  renderWorkoutPlans();
+  renderWorkoutLogs();
+  renderChessTasks();
+  renderChessBoard();
+  renderQuestHistory();
+  renderStreak();
+}
+
+// ===== SET DEFAULT DATE =====
+function setDefaultDate() {
+  const today = new Date().toISOString().split('T')[0];
+  const dateInputs = ['finDate', 'uniDueDate'];
+  dateInputs.forEach(id => {
+    const el = document.getElementById(id);
+    if (el && !el.value) el.value = today;
+  });
+}
+
+// ===== CHECK STREAK VALIDITY ON LOAD =====
+function checkStreakValidity() {
+  if (!appData.streak.lastCheckin) return;
+  
+  const today = new Date();
+  const lastCheckin = new Date(appData.streak.lastCheckin);
+  const diffTime = today.getTime() - lastCheckin.getTime();
+  const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+  
+  if (diffDays > 1) {
+    // Streak is broken
+    appData.streak.count = 0;
+    saveData();
+  }
+}
+
+// ===== INITIALIZE =====
+document.addEventListener('DOMContentLoaded', function() {
+  setDefaultDate();
+  checkStreakValidity();
+  refreshAll();
+});
+
+// Close nav on clicking outside
+document.addEventListener('click', function(e) {
+  const nav = document.getElementById('navLinks');
+  const hamburger = document.querySelector('.hamburger');
+  if (!nav.contains(e.target) && !hamburger.contains(e.target)) {
+    nav.classList.remove('show');
+  }
+});
+</script>
+
+</body>
+</html>
